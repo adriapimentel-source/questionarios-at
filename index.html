@@ -68,16 +68,6 @@ const SHEETS_URL = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";   // termina em /exec
 const TOKEN      = "TROQUE-POR-UMA-SENHA-LONGA";        // igual ao TOKEN do Code.gs (a READ_KEY NÃO vai aqui)
 const PCL_CUTOFF_BR = 36;  // Pereira-Lima et al., 2019 (vs. SCID-5-CV)
 
-/* CTQ: instrumento com direitos autorais (Bernstein & Fink). Cole abaixo o texto dos 28 itens
-   da versão brasileira (Grassi-Oliveira, Stein & Pezzi, 2006) da sua fonte. Enquanto houver
-   item vazio, o CTQ fica indisponível na tela inicial. */
-const CTQ_TEXTS = [
-  "", "", "", "", "", "", "",
-  "", "", "", "", "", "", "",
-  "", "", "", "", "", "", "",
-  "", "", "", "", "", "", ""
-];
-
 /* ===== INSTRUMENTOS ===== */
 const LEC_COLS=["Aconteceu comigo","Presenciei","Fiquei sabendo","Parte do meu trabalho","Não tenho certeza","Não se aplica"];
 const LEC_ITEMS=["Desastre natural (por exemplo, enchente, deslizamento de terra, desabamento).","Incêndio ou explosão.","Acidente com meio de transporte (por exemplo, acidente de carro, barco, trem, avião).","Acidente grave no trabalho, em casa ou durante uma atividade de lazer.","Exposição a substância tóxica (por exemplo, produtos químicos perigosos, radiação).","Agressão física (por exemplo, ser atacado fisicamente, apanhar, levar tapas, ser chutado, ser espancado).","Agressão com arma (por exemplo, levar um tiro, ser esfaqueado, ser ameaçado com faca, arma de fogo ou bomba).","Agressão sexual (estupro, tentativa de estupro, ser obrigado a fazer qualquer tipo de ato sexual à força ou sob ameaça de agressão).","Outras experiências sexuais indesejadas ou não consentidas.","Combate ou exposição a uma área de guerra ou de conflitos urbanos violentos (como militar ou como civil).","Ser mantido em cativeiro (por exemplo, ser raptado, sequestrado, ser mantido como refém ou prisioneiro de guerra).","Doença, ferimento ou lesão com risco de morte.","Experiência de sofrimento físico grave ou intenso.","Morte violenta inesperada (por exemplo, homicídio, suicídio).","Morte acidental inesperada.","Lesão grave, ferimento ou morte que você causou a alguém.","Qualquer outro evento ou experiência muito traumatizante."];
@@ -85,8 +75,6 @@ const ITQ_SCALE=["Nem um pouco","Um pouco","Moderadamente","Bastante","Extremame
 const PCL_SCALE=["Absolutamente nada","Um pouco","Moderadamente","Muito","Extremamente"];
 const PHQ_SCALE=["Nenhuma vez","Vários dias","Mais da metade dos dias","Quase todos os dias"];
 const PHQ_DIF=["Nenhuma dificuldade","Alguma dificuldade","Muita dificuldade","Extrema dificuldade"];
-const CTQ_SCALE=["Nunca","Poucas vezes","Às vezes","Muitas vezes","Sempre"]; // pontuação 1 a 5
-const CTQ_READY=CTQ_TEXTS.length===28&&CTQ_TEXTS.every(t=>t.trim());
 
 const SECTIONS={
  phq:{title:"PHQ-9",sub:"Questionário sobre a saúde do paciente",scale:PHQ_SCALE,base:0,
@@ -101,15 +89,12 @@ const SECTIONS={
   items:[["C1","Quando estou chateado, demoro bastante tempo para me acalmar."],["C2","Sinto-me anestesiado ou emocionalmente desligado."],["C3","Sinto-me um fracasso."],["C4","Sinto-me sem valor."],["C5","Sinto-me distante ou desconectado de outras pessoas."],["C6","Acho difícil ficar emocionalmente próximo de outras pessoas."],["C7","Afetaram seus relacionamentos ou sua vida social?","No último mês, os problemas emocionais, em crenças sobre você mesmo e nos seus relacionamentos listados acima:"],["C8","Afetaram seu trabalho ou sua capacidade de trabalhar?"],["C9","Afetaram qualquer outra parte importante da sua vida, como o cuidado com seus filhos, vida escolar ou acadêmica, ou outras atividades importantes?"]]},
  pcl:{title:"PCL-5",sub:"Lista de verificação de sintomas",scale:PCL_SCALE,base:0,
   intro:"Mantendo o seu pior evento em mente, leia cada dificuldade com cuidado e indique <strong>no último mês</strong>, quanto você se sentiu incomodado por:",
-  items:["Lembranças repetidas, perturbadoras e involuntárias da experiência traumatizante.","Sonhos repetidos e perturbadores referentes à experiência traumatizante.","De repente, se sentir ou agir como se a experiência traumatizante estivesse realmente acontecendo de novo (como se você estivesse lá de volta revivendo a situação).","Sentir-se muito perturbado quando algo lhe faz lembrar da experiência traumatizante.","Apresentar reações físicas intensas quando algo lhe faz lembrar da experiência traumatizante (por exemplo, coração bater forte, dificuldades para respirar, suor excessivo).","Evitar lembranças, pensamentos ou sentimentos relacionados à experiência traumatizante.","Evitar algo ou alguém que lembre você da experiência traumatizante (por exemplo, pessoas, lugares, conversas, atividades, objetos ou situações).","Dificuldades de se lembrar de partes importantes da experiência traumatizante.","Ter fortes crenças negativas sobre si mesmo, sobre outras pessoas ou sobre o mundo (por exemplo, ter pensamentos como: eu sou ruim, há algo muito errado comigo, não se pode confiar em ninguém, o mundo é um lugar muito perigoso).","Culpar a si mesmo ou a outra pessoa pelo evento traumatizante ou pelo que aconteceu depois de tal experiência.","Ter fortes sentimentos negativos, tais como medo, horror, raiva, culpa ou vergonha.","Perder o interesse em atividades que você costumava gostar.","Sentir-se distante ou isolado das outras pessoas.","Dificuldades para experimentar sentimentos positivos (por exemplo, ser incapaz de sentir felicidade ou de ter sentimentos afetuosos pelas pessoas próximas a você).","Comportamento irritável, explosões de raiva, ou agir de forma agressiva.","Arriscar-se muito ou fazer coisas que podem causar algum mal a você.","Estar \"superalerta\" ou hipervigilante.","Sentir-se sobressaltado ou assustar-se facilmente.","Ter dificuldades para se concentrar.","Dificuldades para \"pegar no sono\" ou para permanecer dormindo."].map((t,i)=>["PCL"+(i+1),t])},
- ctq:{title:"CTQ",sub:"Questionário sobre traumas na infância",scale:CTQ_SCALE,base:1,
-  intro:"As afirmações a seguir são sobre algumas de suas experiências de quando você era criança ou adolescente. Para cada uma, indique com que frequência ela era verdadeira para você.",
-  items:CTQ_TEXTS.map((t,i)=>["CTQ"+(i+1),t])}
+  items:["Lembranças repetidas, perturbadoras e involuntárias da experiência traumatizante.","Sonhos repetidos e perturbadores referentes à experiência traumatizante.","De repente, se sentir ou agir como se a experiência traumatizante estivesse realmente acontecendo de novo (como se você estivesse lá de volta revivendo a situação).","Sentir-se muito perturbado quando algo lhe faz lembrar da experiência traumatizante.","Apresentar reações físicas intensas quando algo lhe faz lembrar da experiência traumatizante (por exemplo, coração bater forte, dificuldades para respirar, suor excessivo).","Evitar lembranças, pensamentos ou sentimentos relacionados à experiência traumatizante.","Evitar algo ou alguém que lembre você da experiência traumatizante (por exemplo, pessoas, lugares, conversas, atividades, objetos ou situações).","Dificuldades de se lembrar de partes importantes da experiência traumatizante.","Ter fortes crenças negativas sobre si mesmo, sobre outras pessoas ou sobre o mundo (por exemplo, ter pensamentos como: eu sou ruim, há algo muito errado comigo, não se pode confiar em ninguém, o mundo é um lugar muito perigoso).","Culpar a si mesmo ou a outra pessoa pelo evento traumatizante ou pelo que aconteceu depois de tal experiência.","Ter fortes sentimentos negativos, tais como medo, horror, raiva, culpa ou vergonha.","Perder o interesse em atividades que você costumava gostar.","Sentir-se distante ou isolado das outras pessoas.","Dificuldades para experimentar sentimentos positivos (por exemplo, ser incapaz de sentir felicidade ou de ter sentimentos afetuosos pelas pessoas próximas a você).","Comportamento irritável, explosões de raiva, ou agir de forma agressiva.","Arriscar-se muito ou fazer coisas que podem causar algum mal a você.","Estar \"superalerta\" ou hipervigilante.","Sentir-se sobressaltado ou assustar-se facilmente.","Ter dificuldades para se concentrar.","Dificuldades para \"pegar no sono\" ou para permanecer dormindo."].map((t,i)=>["PCL"+(i+1),t])}
 };
 
 /* ===== ESTADO ===== */
 const blank=()=>({step:"start",meta:{cod:"",date:new Date().toISOString().slice(0,10)},
-  use:{phq:true,lec:true,itq:true,pcl:true,ctq:false},steps:[],pos:0,ans:{},lec:{},idx_ev:{item:"",desc:"",tempo:"",critA:""},sent:"",pclCut:PCL_CUTOFF_BR,evo:null});
+  use:{phq:true,lec:true,itq:true,pcl:true},steps:[],pos:0,ans:{},lec:{},idx_ev:{item:"",desc:"",tempo:"",critA:""},sent:"",pclCut:PCL_CUTOFF_BR,evo:null});
 let S=blank();
 const app=document.getElementById("app");
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -121,21 +106,21 @@ const rFlow=()=>{const c=cur();c==="lec"?rLec():c==="index"?rIndex():rForm(c)};
 const allIds=()=>S.steps.filter(k=>SECTIONS[k]).flatMap(k=>SECTIONS[k].items.map(i=>i[0]));
 
 function rStart(){
- const ins=[["phq","PHQ-9 — sintomas depressivos e risco (2 semanas)"],["lec","LEC-5 — exposição a eventos e escolha do evento-alvo"],["itq","ITQ-Br — TEPT e TEPT complexo (CID-11)"],["pcl","PCL-5 — TEPT (DSM-5)"],["ctq","CTQ — maus-tratos na infância"+(CTQ_READY?"":" (configure os itens no código)")]];
+ const ins=[["phq","PHQ-9 — sintomas depressivos e risco (2 semanas)"],["lec","LEC-5 — exposição a eventos e escolha do evento-alvo"],["itq","ITQ-Br — TEPT e TEPT complexo (CID-11)"],["pcl","PCL-5 — TEPT (DSM-5)"]];
  app.innerHTML=`<h1>Questionários sobre experiências difíceis</h1>
  <p class="muted">Preenchimento em consultório, com a psicóloga presente. Os resultados ficam na área da psicóloga.</p>
  <div class="panel">
   <label class="f" for="cod">Código do paciente (não use nome)</label><input type="text" id="cod" value="${esc(S.meta.cod)}" placeholder="Ex.: P-014">
   <label class="f" for="dt">Data</label><input type="date" id="dt" value="${S.meta.date}">
   <label class="f">Instrumentos</label>
-  ${ins.map(([k,l])=>`<label class="check"><input type="checkbox" data-k="${k}" ${S.use[k]&&(k!=="ctq"||CTQ_READY)?"checked":""} ${k==="ctq"&&!CTQ_READY?"disabled":""}><span>${l}</span></label>`).join("")}
+  ${ins.map(([k,l])=>`<label class="check"><input type="checkbox" data-k="${k}" ${S.use[k]?"checked":""}><span>${l}</span></label>`).join("")}
   <div class="row"><button class="ghost" id="evo">Ver evolução de um paciente</button><button id="go">Começar</button></div></div>`;
  const boxes=[...app.querySelectorAll("input[data-k]")];
  const upd=()=>document.getElementById("go").disabled=!boxes.some(b=>b.checked);boxes.forEach(b=>b.onchange=upd);upd();
  document.getElementById("evo").onclick=()=>{S.evo={cod:cod.value.trim(),rows:null,msg:""};S.step="evo";render();top0()};
  document.getElementById("go").onclick=()=>{
   S.meta={cod:cod.value.trim(),date:dt.value};boxes.forEach(b=>S.use[b.dataset.k]=b.checked);
-  const u=S.use;S.steps=[...(u.phq?["phq"]:[]),...(u.lec?["lec"]:[]),...(u.lec||u.itq||u.pcl?["index"]:[]),...(u.itq?["itq1","itq2"]:[]),...(u.pcl?["pcl"]:[]),...(u.ctq?["ctq"]:[])];
+  const u=S.use;S.steps=[...(u.phq?["phq"]:[]),...(u.lec?["lec"]:[]),...(u.lec||u.itq||u.pcl?["index"]:[]),...(u.itq?["itq1","itq2"]:[]),...(u.pcl?["pcl"]:[])];
   S.pos=0;S.step="flow";render();top0()};
 }
 
@@ -205,13 +190,6 @@ function itq(){const r={re:any("P1","P2"),av:any("P3","P4"),th:any("P5","P6"),fi
 function pcl(){const I=n=>n.map(i=>"PCL"+i),c=n=>I(n).filter(ge2).length,B=[1,2,3,4,5],C=[6,7],D=[8,9,10,11,12,13,14],E=[15,16,17,18,19,20];
  const r={total:sum(I([...Array(20)].map((_,i)=>i+1))),sB:sum(I(B)),sC:sum(I(C)),sD:sum(I(D)),sE:sum(I(E)),cB:c(B),cC:c(C),cD:c(D),cE:c(E),i16:a("PCL16")};
  r.okB=r.cB>=1;r.okC=r.cC>=1;r.okD=r.cD>=2;r.okE=r.cE>=2;r.dx=r.okB&&r.okC&&r.okD&&r.okE;return r}
-/* CTQ — Bernstein et al. (2003); faixas de Bernstein & Fink (1998) */
-const CTQ_REV=[2,5,7,13,19,26,28];
-const CTQ_SUB=[["Abuso emocional",[3,8,14,18,25],[8,12,15]],["Abuso físico",[9,11,12,15,17],[7,9,12]],["Abuso sexual",[20,21,23,24,27],[5,7,12]],["Negligência emocional",[5,7,13,19,28],[9,14,17]],["Negligência física",[1,2,4,6,26],[7,9,12]]];
-const ctqv=i=>{const v=S.ans["CTQ"+i]??1;return CTQ_REV.includes(i)?6-v:v};
-function ctq(){const subs=CTQ_SUB.map(([n,its,cut])=>{const s=its.reduce((t,i)=>t+ctqv(i),0);
-  const lv=s<=cut[0]?"nenhum a mínimo":s<=cut[1]?"baixo a moderado":s<=cut[2]?"moderado a grave":"grave a extremo";return{n,s,lv}});
- const md=[10,16,22].filter(i=>(S.ans["CTQ"+i]??1)===5).length;return{subs,md}}
 const evName=()=>{const v=S.idx_ev.item;return v===""?"":v==="outro"?"Outro":(+v+1)+". "+LEC_ITEMS[+v].split(" (")[0]};
 
 function buildRow(){
@@ -224,8 +202,6 @@ function buildRow(){
    ITQ_desreg_afeto:r.sAD,ITQ_autoconceito_neg:r.sNSC,ITQ_relacionamentos:r.sDR,ITQ_prejuizo_DSO:r.fiD?"sim":"não",ITQ_total_DSO:r.sDSO})}
  if(u.pcl){for(let i=1;i<=20;i++)row["PCL"+i]=a("PCL"+i);const r=pcl();
   Object.assign(row,{PCL_total:r.total,PCL_B:r.sB,PCL_C:r.sC,PCL_D:r.sD,PCL_E:r.sE,PCL_DSM5_provisorio:r.dx?"atende":"não atende",PCL_acima_corte_36:r.total>=PCL_CUTOFF_BR?"sim":"não"})}
- if(u.ctq){for(let i=1;i<=28;i++)row["CTQ"+i]=S.ans["CTQ"+i];const r=ctq();
-  ["AE","AF","AS","NE","NF"].forEach((k,j)=>{row["CTQ_"+k]=r.subs[j].s;row["CTQ_"+k+"_nivel"]=r.subs[j].lv});row.CTQ_minimizacao=r.md}
  return row}
 
 async function send(){
@@ -239,7 +215,7 @@ async function send(){
 
 function itemTable(title,sec){
  let h=`<h3>${title}</h3><div class="wrap"><table><tr><th>#</th><th>Item</th><th>Resposta</th></tr>`;
- sec.items.forEach(([id,t,,scale],n)=>{const sc=scale||sec.scale,v=S.ans[id]??sec.base,hot=sec.base===1?v>=4:v>=2;
+ sec.items.forEach(([id,t,,scale],n)=>{const sc=scale||sec.scale,v=S.ans[id]??sec.base,hot=v>=2;
   h+=`<tr class="${hot?"hi":""}"><td>${n+1}</td><td>${esc(t)}</td><td><b>${v}</b> · ${sc[v-sec.base]}</td></tr>`});
  return h+`</table></div>`}
 
@@ -280,13 +256,6 @@ function rResults(){
   <p class="muted">Texto: Lima et al. (2016). Corte 36: Pereira-Lima et al. (2019), contra SCID-5-CV, na versão de Osório et al. (2017). O National Center for PTSD sugere 31–33. Sintoma presente com pontuação ≥ 2.</p>
   <p class="noprint"><label class="f" for="cut">Ponto de corte</label><input type="text" id="cut" inputmode="numeric" value="${S.pclCut}" style="max-width:6rem"></p>
   ${itemTable("Item a item",SECTIONS.pcl)}</div>`}
- if(u.ctq){const r=ctq();
-  h+=`<div class="panel"><h2>CTQ</h2>
-  <div class="wrap"><table><tr><th>Subescala</th><th>Escore (5–25)</th><th>Nível</th></tr>
-  ${r.subs.map(s=>`<tr class="${/moderado a grave|grave a extremo/.test(s.lv)?"hi":""}"><td>${s.n}</td><td>${s.s}</td><td>${s.lv}</td></tr>`).join("")}</table></div>
-  ${r.md>0?`<div class="verdict alert"><strong>Minimização/negação: ${r.md} de 3</strong>Possível subnotificação de maus-tratos. Interprete os escores baixos com cautela.</div>`:""}
-  <p class="muted">Pontuação 1–5, itens invertidos: 2, 5, 7, 13, 19, 26 e 28. Faixas de Bernstein & Fink (1998). Versão brasileira: Grassi-Oliveira, Stein & Pezzi (2006). Instrumento com direitos autorais.</p>
-  ${itemTable("Item a item",SECTIONS.ctq)}</div>`}
  h+=`<p class="muted">Itens destacados: pontuação clinicamente relevante. Instrumentos de rastreio sem parecer SATEPSI; uso complementar, integrado à entrevista clínica.</p>
  <div class="row noprint"><button class="ghost" id="nw">Nova aplicação</button><button id="pdf">Gerar PDF</button></div>`;
  app.innerHTML=h;
@@ -320,10 +289,10 @@ function rEvo(){
    if(pts.length){const dif=pts.length>1?pts[pts.length-1].v-pts[0].v:null;
     h+=`<div class="panel"><h3 style="margin-top:0">${n}</h3><p class="muted">${pts.length>1?`Da primeira à última aplicação: ${dif>0?"+":""}${dif} ponto(s).`:"Uma aplicação até agora."}</p>${spark(pts,max,cut)}</div>`}});
   const has=k=>rows.some(r=>r[k]!==""&&r[k]!=null);
-  const cols=[["data_aplicacao","Data"],["PHQ_total","PHQ-9"],["PHQ_item9","PHQ item 9"],["PCL_total","PCL-5"],["ITQ_resultado","ITQ"],["ITQ_total_TEPT","ITQ TEPT"],["ITQ_total_DSO","ITQ DSO"],["CTQ_AE","CTQ AE"],["CTQ_AF","CTQ AF"],["CTQ_AS","CTQ AS"],["CTQ_NE","CTQ NE"],["CTQ_NF","CTQ NF"]].filter(([k])=>has(k));
+  const cols=[["data_aplicacao","Data"],["PHQ_total","PHQ-9"],["PHQ_item9","PHQ item 9"],["PCL_total","PCL-5"],["ITQ_resultado","ITQ"],["ITQ_total_TEPT","ITQ TEPT"],["ITQ_total_DSO","ITQ DSO"]].filter(([k])=>has(k));
   h+=`<div class="panel"><h3 style="margin-top:0">Todas as aplicações</h3><div class="wrap"><table><tr>${cols.map(c=>`<th>${c[1]}</th>`).join("")}</tr>
   ${rows.slice().reverse().map(r=>`<tr class="${+r.PHQ_item9>0?"hi":""}">${cols.map(([k])=>`<td>${esc(k==="data_aplicacao"?String(r[k]).split("-").reverse().join("/"):r[k])}</td>`).join("")}</tr>`).join("")}</table></div>
-  <p class="muted">Linhas destacadas: item 9 do PHQ-9 pontuado. AE, AF, AS = abuso emocional, físico, sexual; NE, NF = negligência emocional, física.</p></div>
+  <p class="muted">Linhas destacadas: item 9 do PHQ-9 pontuado.</p></div>
   <div class="row noprint"><span></span><button id="pdf">Gerar PDF</button></div>`}
  app.innerHTML=h;
  bk.onclick=()=>{S.step="start";render();top0()};
