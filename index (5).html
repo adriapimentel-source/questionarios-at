@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Questionários sobre experiências difíceis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,500;7..72,650&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F6F5;--ink:#1C2E30;--muted:#5A6B6C;--line:#CBD8D5;--deep:#1F4A4C;--accent:#2F7568;--soft:#DDEAE6;--card:#FFF;--alert:#7A3B5E;--alertbg:#F4E6EE;--hi:#FFF3D6;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111C1D;--ink:#E4EEEC;--muted:#9DB1AF;--line:#2E4345;--deep:#9FD3C8;--accent:#4FA593;--soft:#1C3133;--card:#162426;--alert:#E3A6C6;--alertbg:#3A2232;--hi:#3B3420}}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:46rem;margin:0 auto;padding:2rem 1.25rem 4rem}
+h1,h2,h3{font-family:"Literata",Georgia,serif;font-weight:650;color:var(--deep);line-height:1.25;margin:0 0 .5rem}
+h1{font-size:2rem}h2{font-size:1.5rem}h3{font-size:1.15rem;margin-top:1.5rem}
+.muted{color:var(--muted);font-size:.95rem}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.5rem;margin:1.25rem 0}
+label.f{display:block;font-weight:700;margin:1rem 0 .3rem}
+input[type=text],input[type=date],select,textarea{width:100%;font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:.6rem .75rem}
+.check{display:flex;gap:.6rem;align-items:flex-start;margin:.5rem 0;cursor:pointer}
+.check input{margin-top:.35rem;width:1.1rem;height:1.1rem;accent-color:var(--accent)}
+button{font:inherit;cursor:pointer;border-radius:999px;padding:.7rem 1.4rem;border:1.5px solid var(--accent);background:var(--accent);color:#fff;font-weight:700}
+button.ghost{background:transparent;color:var(--accent)}
+button:disabled{opacity:.45;cursor:not-allowed}
+button:focus-visible,.opt input:focus-visible+span,.chip input:focus-visible+span{outline:3px solid var(--deep);outline-offset:2px}
+.row{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:1.5rem}
+.progress{height:6px;background:var(--soft);border-radius:99px;overflow:hidden;margin:.5rem 0 1.5rem}
+.progress div{height:100%;background:var(--accent);transition:width .3s}
+fieldset.item{border:0;margin:0;padding:1.1rem 0;border-top:1px solid var(--line)}
+.q{font-weight:700;margin-bottom:.6rem;padding:0}
+.q small{color:var(--muted);font-weight:400;margin-right:.35rem}
+.opts{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem}
+.opt,.chip{position:relative}
+.opt input,.chip input{position:absolute;opacity:0;pointer-events:none}
+.opt span{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:4rem;padding:.4rem .25rem;border:1.5px solid var(--line);border-radius:10px;font-size:.82rem;line-height:1.2;background:var(--bg);cursor:pointer}
+.opt span b{font-size:1.15rem;font-family:"Literata",serif}
+.opt input:checked+span,.chip input:checked+span{background:var(--accent);border-color:var(--accent);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chip span{display:inline-block;padding:.35rem .8rem;border:1.5px solid var(--line);border-radius:999px;font-size:.88rem;background:var(--bg);cursor:pointer}
+.lead{font-family:"Literata",serif;font-style:italic;color:var(--deep);margin:1.25rem 0 .25rem}
+table{width:100%;border-collapse:collapse;font-size:.93rem}
+td,th{text-align:left;padding:.5rem .4rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:400}
+tr.hi td{background:var(--hi)}
+.wrap{overflow-x:auto}
+.verdict{border-left:5px solid var(--accent);background:var(--soft);padding:1rem 1.1rem;border-radius:0 10px 10px 0;margin:1rem 0}
+.verdict.alert{border-color:var(--alert);background:var(--alertbg)}
+.verdict strong{display:block;font-family:"Literata",serif;font-size:1.2rem;color:var(--deep)}
+.verdict.alert strong{color:var(--alert)}
+.yes{color:var(--accent);font-weight:700}.no{color:var(--muted)}
+.status{font-size:.9rem;padding:.5rem .8rem;border-radius:8px;background:var(--soft);display:inline-block}
+footer{max-width:46rem;margin:0 auto;padding:0 1.25rem 2rem;font-size:.85rem;color:var(--muted)}
+@media (max-width:520px){.opts{grid-template-columns:1fr}.opt span{flex-direction:row;gap:.6rem;min-height:2.8rem;justify-content:flex-start;padding:.5rem .9rem}.opt span b{width:1.4rem}}
+@media print{:root{--bg:#fff;--ink:#000;--card:#fff;--soft:#eee;--hi:#f3f3f3}body{font-size:10.5pt}main{max-width:none;padding:0}
+  footer,.noprint{display:none!important}.panel{border:0;padding:0;margin:.8rem 0;break-inside:auto}tr{break-inside:avoid}h2{break-after:avoid}}
+@media (prefers-reduced-motion:reduce){.progress div{transition:none}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<footer>Em sofrimento intenso ou pensando em tirar a própria vida? Ligue para o CVV no 188 (gratuito, 24h) ou para o SAMU no 192.</footer>
+<script>
+/* ===== CONFIGURAÇÃO ===== */
+const SHEETS_URL = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";   // termina em /exec
+const TOKEN      = "TROQUE-POR-UMA-SENHA-LONGA";        // igual ao do Code.gs
+const PCL_CUTOFF_BR = 36;  // Pereira-Lima et al., 2019 (vs. SCID-5-CV)
+
+/* ===== INSTRUMENTOS ===== */
+const LEC_COLS=["Aconteceu comigo","Presenciei","Fiquei sabendo","Parte do meu trabalho","Não tenho certeza","Não se aplica"];
+const LEC_ITEMS=["Desastre natural (por exemplo, enchente, deslizamento de terra, desabamento).","Incêndio ou explosão.","Acidente com meio de transporte (por exemplo, acidente de carro, barco, trem, avião).","Acidente grave no trabalho, em casa ou durante uma atividade de lazer.","Exposição a substância tóxica (por exemplo, produtos químicos perigosos, radiação).","Agressão física (por exemplo, ser atacado fisicamente, apanhar, levar tapas, ser chutado, ser espancado).","Agressão com arma (por exemplo, levar um tiro, ser esfaqueado, ser ameaçado com faca, arma de fogo ou bomba).","Agressão sexual (estupro, tentativa de estupro, ser obrigado a fazer qualquer tipo de ato sexual à força ou sob ameaça de agressão).","Outras experiências sexuais indesejadas ou não consentidas.","Combate ou exposição a uma área de guerra ou de conflitos urbanos violentos (como militar ou como civil).","Ser mantido em cativeiro (por exemplo, ser raptado, sequestrado, ser mantido como refém ou prisioneiro de guerra).","Doença, ferimento ou lesão com risco de morte.","Experiência de sofrimento físico grave ou intenso.","Morte violenta inesperada (por exemplo, homicídio, suicídio).","Morte acidental inesperada.","Lesão grave, ferimento ou morte que você causou a alguém.","Qualquer outro evento ou experiência muito traumatizante."];
+const ITQ_SCALE=["Nem um pouco","Um pouco","Moderadamente","Bastante","Extremamente"];
+const PCL_SCALE=["Absolutamente nada","Um pouco","Moderadamente","Muito","Extremamente"];
+const SECTIONS={
+ itq1:{title:"Questionário Internacional de Trauma (ITQ)",sub:"ITQ · parte 1 de 2",scale:ITQ_SCALE,
+  intro:"Pensando na experiência que você escolheu como a que mais perturba, indique o quanto cada problema tem incomodado você <strong>no último mês</strong>.",
+  items:[["P1","Ter sonhos desagradáveis que reproduzem parte da experiência ou são claramente relacionados à experiência?"],["P2","Ter imagens ou memórias intensas que, às vezes, vêm à sua mente, fazendo com que você sinta que a experiência está acontecendo novamente no aqui e agora?"],["P3","Evitar pistas internas da experiência (por exemplo, pensamentos, sentimentos ou sensações físicas)?"],["P4","Evitar pistas externas da experiência (por exemplo, pessoas, lugares, conversas, objetos, atividades ou situações)?"],["P5","Estar \"hiper-alerta\", vigilante ou em guarda?"],["P6","Sentir-se sobressaltado ou facilmente assustado?"],["P7","Afetaram seus relacionamentos ou sua vida social?","No último mês, os sintomas acima:"],["P8","Afetaram seu trabalho ou sua capacidade de trabalhar?"],["P9","Afetaram qualquer outra parte importante da sua vida, como o cuidado com seus filhos, vida escolar ou acadêmica, ou outras atividades importantes?"]]},
+ itq2:{title:"Questionário Internacional de Trauma (ITQ)",sub:"ITQ · parte 2 de 2",scale:ITQ_SCALE,
+  intro:"As questões a seguir se referem a como você <strong>tipicamente</strong> se sente, pensa a respeito de si mesmo e se relaciona com outras pessoas. Responda pensando no quão verdadeira cada afirmativa é para você.",
+  items:[["C1","Quando estou chateado, demoro bastante tempo para me acalmar."],["C2","Sinto-me anestesiado ou emocionalmente desligado."],["C3","Sinto-me um fracasso."],["C4","Sinto-me sem valor."],["C5","Sinto-me distante ou desconectado de outras pessoas."],["C6","Acho difícil ficar emocionalmente próximo de outras pessoas."],["C7","Afetaram seus relacionamentos ou sua vida social?","No último mês, os problemas emocionais, em crenças sobre você mesmo e nos seus relacionamentos listados acima:"],["C8","Afetaram seu trabalho ou sua capacidade de trabalhar?"],["C9","Afetaram qualquer outra parte importante da sua vida, como o cuidado com seus filhos, vida escolar ou acadêmica, ou outras atividades importantes?"]]},
+ pcl:{title:"PCL-5",sub:"Lista de verificação de sintomas",scale:PCL_SCALE,
+  intro:"Mantendo o seu pior evento em mente, leia cada dificuldade com cuidado e indique <strong>no último mês</strong>, quanto você se sentiu incomodado por:",
+  items:["Lembranças repetidas, perturbadoras e involuntárias da experiência traumatizante.","Sonhos repetidos e perturbadores referentes à experiência traumatizante.","De repente, se sentir ou agir como se a experiência traumatizante estivesse realmente acontecendo de novo (como se você estivesse lá de volta revivendo a situação).","Sentir-se muito perturbado quando algo lhe faz lembrar da experiência traumatizante.","Apresentar reações físicas intensas quando algo lhe faz lembrar da experiência traumatizante (por exemplo, coração bater forte, dificuldades para respirar, suor excessivo).","Evitar lembranças, pensamentos ou sentimentos relacionados à experiência traumatizante.","Evitar algo ou alguém que lembre você da experiência traumatizante (por exemplo, pessoas, lugares, conversas, atividades, objetos ou situações).","Dificuldades de se lembrar de partes importantes da experiência traumatizante.","Ter fortes crenças negativas sobre si mesmo, sobre outras pessoas ou sobre o mundo (por exemplo, ter pensamentos como: eu sou ruim, há algo muito errado comigo, não se pode confiar em ninguém, o mundo é um lugar muito perigoso).","Culpar a si mesmo ou a outra pessoa pelo evento traumatizante ou pelo que aconteceu depois de tal experiência.","Ter fortes sentimentos negativos, tais como medo, horror, raiva, culpa ou vergonha.","Perder o interesse em atividades que você costumava gostar.","Sentir-se distante ou isolado das outras pessoas.","Dificuldades para experimentar sentimentos positivos (por exemplo, ser incapaz de sentir felicidade ou de ter sentimentos afetuosos pelas pessoas próximas a você).","Comportamento irritável, explosões de raiva, ou agir de forma agressiva.","Arriscar-se muito ou fazer coisas que podem causar algum mal a você.","Estar \"superalerta\" ou hipervigilante.","Sentir-se sobressaltado ou assustar-se facilmente.","Ter dificuldades para se concentrar.","Dificuldades para \"pegar no sono\" ou para permanecer dormindo."].map((t,i)=>["PCL"+(i+1),t])}
+};
+
+/* ===== ESTADO ===== */
+const S={step:"start",meta:{cod:"",date:new Date().toISOString().slice(0,10)},use:{lec:true,itq:true,pcl:true},order:[],idx:0,ans:{},lec:{},idx_ev:{item:"",desc:"",tempo:"",critA:""},sent:"",pclCut:PCL_CUTOFF_BR};
+const app=document.getElementById("app");
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const top0=()=>scrollTo(0,0);
+const render=()=>({start:rStart,lec:rLec,index:rIndex,form:rForm,done:rDone,results:rResults})[S.step]();
+
+function rStart(){
+ app.innerHTML=`<h1>Questionários sobre experiências difíceis</h1>
+ <p class="muted">Preenchimento em consultório, com a psicóloga presente. Os resultados ficam na área da psicóloga.</p>
+ <div class="panel">
+  <label class="f" for="cod">Código do paciente (não use nome)</label><input type="text" id="cod" value="${esc(S.meta.cod)}" placeholder="Ex.: P-014">
+  <label class="f" for="dt">Data</label><input type="date" id="dt" value="${S.meta.date}">
+  <label class="f">Instrumentos</label>
+  <label class="check"><input type="checkbox" id="u0" ${S.use.lec?"checked":""}><span>LEC-5 — exposição a eventos e escolha do evento-alvo</span></label>
+  <label class="check"><input type="checkbox" id="u1" ${S.use.itq?"checked":""}><span>ITQ-Br — TEPT e TEPT complexo (CID-11)</span></label>
+  <label class="check"><input type="checkbox" id="u2" ${S.use.pcl?"checked":""}><span>PCL-5 — TEPT (DSM-5)</span></label>
+  <div class="row"><span></span><button id="go">Começar</button></div></div>`;
+ const upd=()=>go.disabled=!(u0.checked||u1.checked||u2.checked);[u0,u1,u2].forEach(x=>x.onchange=upd);upd();
+ go.onclick=()=>{S.meta={cod:cod.value.trim(),date:dt.value};S.use={lec:u0.checked,itq:u1.checked,pcl:u2.checked};
+  S.order=[...(S.use.itq?["itq1","itq2"]:[]),...(S.use.pcl?["pcl"]:[])];S.idx=0;
+  S.step=S.use.lec?"lec":(S.order.length?"index":"done");render();top0()};
+}
+
+function rLec(){
+ let h=`<p class="muted">LEC-5</p><h2>Eventos de vida</h2>
+ <p>A lista a seguir apresenta eventos difíceis ou traumatizantes que podem acontecer com as pessoas. Para cada evento, marque uma ou mais opções. Considere a sua <strong>vida inteira</strong>, desde a infância até agora.</p><div class="panel">`;
+ LEC_ITEMS.forEach((t,i)=>{h+=`<fieldset class="item"><legend class="q"><small>${i+1}.</small>${esc(t)}</legend><div class="chips">`;
+  LEC_COLS.forEach((c,j)=>h+=`<label class="chip"><input type="checkbox" data-i="${i}" data-j="${j}" ${(S.lec[i]||[]).includes(j)?"checked":""}><span>${c}</span></label>`);
+  h+=`</div></fieldset>`});
+ h+=`</div><div class="row"><button class="ghost" id="back">Voltar</button><button id="next">Continuar</button></div>`;
+ app.innerHTML=h;
+ const chk=()=>next.disabled=!LEC_ITEMS.every((_,i)=>(S.lec[i]||[]).length);
+ app.querySelectorAll(".chip input").forEach(c=>c.onchange=()=>{const i=+c.dataset.i,j=+c.dataset.j;let s=new Set(S.lec[i]||[]);
+  if(c.checked){if(j===5)s=new Set([5]);else s.delete(5);s.add(j)}else s.delete(j);S.lec[i]=[...s];
+  app.querySelectorAll(`.chip input[data-i="${i}"]`).forEach(o=>o.checked=s.has(+o.dataset.j));chk()});
+ chk();back.onclick=()=>{S.step="start";render();top0()};next.onclick=()=>{S.step="index";render();top0()};
+}
+
+function rIndex(){
+ const opts=LEC_ITEMS.map((t,i)=>({i,t,m:S.lec[i]||[]})).filter(o=>o.m.some(j=>j<=3));
+ const e=S.idx_ev;
+ app.innerHTML=`<h2>A experiência que mais perturba</h2>
+ <p>Os próximos questionários pedem que você pense em uma experiência só: a que mais incomoda você hoje.</p>
+ <div class="panel">
+ ${S.use.lec?`<label class="f" for="it">Qual dos eventos marcados é o pior para você?</label>
+ <select id="it"><option value="">Escolha</option>${opts.map(o=>`<option value="${o.i}" ${String(e.item)===String(o.i)?"selected":""}>${o.i+1}. ${esc(o.t.split(" (")[0])}</option>`).join("")}<option value="outro" ${e.item==="outro"?"selected":""}>Outro</option></select>`:""}
+ <label class="f" for="ds">Descreva brevemente, só o necessário (opcional)</label><textarea id="ds" rows="2">${esc(e.desc)}</textarea>
+ <label class="f" for="tp">Há quanto tempo aconteceu?</label><input type="text" id="tp" value="${esc(e.tempo)}" placeholder="Ex.: na infância, dos 8 aos 14 anos">
+ <label class="f">Envolveu morte real ou ameaça de morte, ferimento grave ou violência sexual?</label>
+ <div class="chips">${["Sim","Não","Não sei"].map(v=>`<label class="chip"><input type="radio" name="ca" value="${v}" ${e.critA===v?"checked":""}><span>${v}</span></label>`).join("")}</div>
+ </div><div class="row"><button class="ghost" id="back">Voltar</button><button id="next">Continuar</button></div>`;
+ back.onclick=()=>{save();S.step=S.use.lec?"lec":"start";render();top0()};
+ const save=()=>{S.idx_ev={item:window.it?it.value:"",desc:ds.value.trim(),tempo:tp.value.trim(),critA:(app.querySelector("input[name=ca]:checked")||{}).value||""}};
+ next.onclick=()=>{save();S.step=S.order.length?"form":"done";S.idx=0;render();top0()};
+}
+
+function rForm(){
+ const key=S.order[S.idx],sec=SECTIONS[key],all=S.order.flatMap(k=>SECTIONS[k].items.map(i=>i[0]));
+ const prog=()=>all.filter(k=>S.ans[k]!==undefined).length/all.length*100;
+ let h=`<p class="muted">${sec.sub}</p><h2>${sec.title}</h2><div class="progress"><div style="width:${prog()}%"></div></div><p>${sec.intro}</p><div class="panel">`;
+ sec.items.forEach(([id,t,lead],n)=>{if(lead)h+=`<p class="lead">${esc(lead)}</p>`;
+  h+=`<fieldset class="item"><legend class="q"><small>${n+1}.</small>${esc(t)}</legend><div class="opts">`;
+  sec.scale.forEach((l,v)=>h+=`<label class="opt"><input type="radio" name="${id}" value="${v}" ${S.ans[id]===v?"checked":""}><span><b>${v}</b>${l}</span></label>`);
+  h+=`</div></fieldset>`});
+ const last=S.idx===S.order.length-1;
+ h+=`</div><div class="row"><button class="ghost" id="back">Voltar</button><button id="next">${last?"Concluir":"Continuar"}</button></div>`;
+ app.innerHTML=h;
+ const chk=()=>next.disabled=!sec.items.every(i=>S.ans[i[0]]!==undefined);
+ app.querySelectorAll(".opt input").forEach(r=>r.onchange=()=>{S.ans[r.name]=+r.value;chk();app.querySelector(".progress div").style.width=prog()+"%"});
+ chk();
+ back.onclick=()=>{if(S.idx===0)S.step="index";else S.idx--;render();top0()};
+ next.onclick=()=>{if(last){S.step="done";send()}else S.idx++;render();top0()};
+}
+
+function rDone(){
+ app.innerHTML=`<div class="panel" style="text-align:center;margin-top:3rem"><h2>Obrigado por responder</h2>
+ <p>Você já pode devolver o aparelho à psicóloga. Se alguma pergunta mexeu com você, conte a ela agora: há tempo para conversar sobre isso.</p>
+ <div class="row" style="justify-content:center"><button class="ghost" id="res">Área da psicóloga</button></div></div>`;
+ res.onclick=()=>{S.step="results";render();top0()};
+}
+
+/* ===== CORREÇÃO ===== */
+const a=id=>S.ans[id]??0,ge2=id=>a(id)>=2,any=(...x)=>x.some(ge2),sum=x=>x.reduce((s,i)=>s+a(i),0);
+const yn=b=>b?'<span class="yes">sim</span>':'<span class="no">não</span>';
+function itq(){const r={re:any("P1","P2"),av:any("P3","P4"),th:any("P5","P6"),fiP:any("P7","P8","P9"),ad:any("C1","C2"),nsc:any("C3","C4"),dr:any("C5","C6"),fiD:any("C7","C8","C9"),
+ sRe:sum(["P1","P2"]),sAv:sum(["P3","P4"]),sTh:sum(["P5","P6"]),sAD:sum(["C1","C2"]),sNSC:sum(["C3","C4"]),sDR:sum(["C5","C6"])};
+ r.sPT=r.sRe+r.sAv+r.sTh;r.sDSO=r.sAD+r.sNSC+r.sDR;const p=r.re&&r.av&&r.th&&r.fiP,d=r.ad&&r.nsc&&r.dr&&r.fiD;
+ r.cptsd=p&&d;r.ptsd=p&&!d;r.label=r.cptsd?"TEPT complexo":r.ptsd?"TEPT":"Critérios não atendidos";return r}
+function pcl(){const I=n=>n.map(i=>"PCL"+i),c=n=>I(n).filter(ge2).length,B=[1,2,3,4,5],C=[6,7],D=[8,9,10,11,12,13,14],E=[15,16,17,18,19,20];
+ const r={total:sum(I([...Array(20)].map((_,i)=>i+1))),sB:sum(I(B)),sC:sum(I(C)),sD:sum(I(D)),sE:sum(I(E)),cB:c(B),cC:c(C),cD:c(D),cE:c(E),i16:a("PCL16")};
+ r.okB=r.cB>=1;r.okC=r.cC>=1;r.okD=r.cD>=2;r.okE=r.cE>=2;r.dx=r.okB&&r.okC&&r.okD&&r.okE;return r}
+const evName=()=>{const v=S.idx_ev.item;return v===""?"":v==="outro"?"Outro":(+v+1)+". "+LEC_ITEMS[+v].split(" (")[0]};
+
+function buildRow(){
+ const row={recebido_em:new Date().toLocaleString("pt-BR"),codigo:S.meta.cod,data_aplicacao:S.meta.date,
+  evento_alvo:evName(),evento_descricao:S.idx_ev.desc,evento_tempo:S.idx_ev.tempo,criterio_A:S.idx_ev.critA};
+ if(S.use.lec)LEC_ITEMS.forEach((_,i)=>row["LEC"+(i+1)]=(S.lec[i]||[]).map(j=>LEC_COLS[j]).join("; "));
+ if(S.use.itq){["P","C"].forEach(p=>{for(let i=1;i<=9;i++)row["ITQ_"+p+i]=a(p+i)});const r=itq();
+  Object.assign(row,{ITQ_resultado:r.label,ITQ_revivencia:r.sRe,ITQ_evitacao:r.sAv,ITQ_ameaca:r.sTh,ITQ_prejuizo_TEPT:r.fiP?"sim":"não",ITQ_total_TEPT:r.sPT,
+   ITQ_desreg_afeto:r.sAD,ITQ_autoconceito_neg:r.sNSC,ITQ_relacionamentos:r.sDR,ITQ_prejuizo_DSO:r.fiD?"sim":"não",ITQ_total_DSO:r.sDSO})}
+ if(S.use.pcl){for(let i=1;i<=20;i++)row["PCL"+i]=a("PCL"+i);const r=pcl();
+  Object.assign(row,{PCL_total:r.total,PCL_B:r.sB,PCL_C:r.sC,PCL_D:r.sD,PCL_E:r.sE,PCL_DSM5_provisorio:r.dx?"atende":"não atende",PCL_acima_corte_36:r.total>=PCL_CUTOFF_BR?"sim":"não"})}
+ return row}
+
+async function send(){
+ if(!SHEETS_URL.startsWith("https://script.google.com")){S.sent="Envio desativado: configure a SHEETS_URL.";return}
+ S.sent="Enviando para a planilha…";
+ try{const r=await fetch(SHEETS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({token:TOKEN,row:buildRow()})});
+  const j=await r.json();S.sent=j.ok?"Respostas salvas na planilha.":"A planilha recusou o envio ("+(j.erro||"erro")+"). Gere o PDF antes de fechar.";}
+ catch(e){S.sent="Não foi possível enviar para a planilha. Gere o PDF antes de fechar."}
+ const st=document.getElementById("st");if(st)st.textContent=S.sent;
+}
+
+function itemTable(title,list,scale){
+ let h=`<h3>${title}</h3><div class="wrap"><table><tr><th>#</th><th>Item</th><th>Resposta</th></tr>`;
+ list.forEach(([id,t],n)=>{const v=a(id);h+=`<tr class="${v>=2?"hi":""}"><td>${n+1}</td><td>${esc(t)}</td><td><b>${v}</b> · ${scale[v]}</td></tr>`});
+ return h+`</table></div>`}
+
+function rResults(){
+ const m=S.meta,e=S.idx_ev;
+ let h=`<h1>Resultados</h1><p class="muted">Código: ${esc(m.cod||"—")} · Aplicação: ${m.date.split("-").reverse().join("/")}</p>
+ <p class="noprint"><span class="status" id="st">${esc(S.sent)}</span></p>`;
+ h+=`<div class="panel"><h2>Evento-alvo</h2><table>
+  <tr><th>Evento</th><td>${esc(evName()||"—")}</td></tr><tr><th>Descrição</th><td>${esc(e.desc||"—")}</td></tr>
+  <tr><th>Quando</th><td>${esc(e.tempo||"—")}</td></tr><tr><th>Critério A (autorrelato)</th><td>${esc(e.critA||"—")}</td></tr></table></div>`;
+ if(S.use.lec){const end=LEC_ITEMS.map((t,i)=>({i,t,m:S.lec[i]||[]})).filter(o=>o.m.length&&!o.m.includes(5));
+  h+=`<div class="panel"><h2>LEC-5</h2><p class="muted">Eventos endossados (exceto "não se aplica").</p><div class="wrap"><table><tr><th>Evento</th><th>Tipo de exposição</th></tr>
+  ${end.length?end.map(o=>`<tr class="${o.m.includes(0)?"hi":""}"><td>${o.i+1}. ${esc(o.t)}</td><td>${o.m.map(j=>LEC_COLS[j]).join("; ")}</td></tr>`).join(""):`<tr><td colspan="2">Nenhum evento endossado.</td></tr>`}</table></div></div>`}
+ if(S.use.itq){const r=itq();
+  h+=`<div class="panel"><h2>ITQ-Br</h2><div class="verdict ${r.cptsd||r.ptsd?"alert":""}"><strong>${r.label==="Critérios não atendidos"?r.label:"Critérios de "+r.label+" atendidos"}</strong>
+  Algoritmo diagnóstico da CID-11 (Cloitre et al., 2018): agrupamento presente quando ao menos um item tem pontuação ≥ 2, com prejuízo funcional ≥ 2 em ao menos um item. TEPT e TEPT complexo são mutuamente exclusivos.</div>
+  <div class="wrap"><table><tr><th>Agrupamento</th><th>Soma</th><th>Presente</th></tr>
+  <tr><td>Revivência (1–2)</td><td>${r.sRe}/8</td><td>${yn(r.re)}</td></tr><tr><td>Evitação (3–4)</td><td>${r.sAv}/8</td><td>${yn(r.av)}</td></tr>
+  <tr><td>Senso de ameaça (5–6)</td><td>${r.sTh}/8</td><td>${yn(r.th)}</td></tr><tr><td>Prejuízo funcional TEPT (7–9)</td><td>—</td><td>${yn(r.fiP)}</td></tr>
+  <tr><td><b>Total TEPT</b></td><td><b>${r.sPT}/24</b></td><td></td></tr>
+  <tr><td>Desregulação de afeto (P2 1–2)</td><td>${r.sAD}/8</td><td>${yn(r.ad)}</td></tr><tr><td>Autoconceito negativo (P2 3–4)</td><td>${r.sNSC}/8</td><td>${yn(r.nsc)}</td></tr>
+  <tr><td>Dificuldades nos relacionamentos (P2 5–6)</td><td>${r.sDR}/8</td><td>${yn(r.dr)}</td></tr><tr><td>Prejuízo funcional DSO (P2 7–9)</td><td>—</td><td>${yn(r.fiD)}</td></tr>
+  <tr><td><b>Total DSO</b></td><td><b>${r.sDSO}/24</b></td><td></td></tr></table></div>
+  <p class="muted">Versão brasileira: Donat (2019), PUCRS. Desregulação de afeto com α = 0,59 nessa amostra: interprete com cautela e cruze com outras fontes. Sem normas brasileiras.</p>
+  ${itemTable("Parte 1 · item a item",SECTIONS.itq1.items,ITQ_SCALE)}${itemTable("Parte 2 · item a item",SECTIONS.itq2.items,ITQ_SCALE)}</div>`}
+ if(S.use.pcl){const r=pcl(),ab=r.total>=S.pclCut;
+  h+=`<div class="panel"><h2>PCL-5</h2><div class="verdict ${r.dx||ab?"alert":""}"><strong>Escore total: ${r.total}/80</strong>
+  ${ab?"Igual ou acima":"Abaixo"} do ponto de corte de ${S.pclCut}. Diagnóstico provisório pelo DSM-5: <b>${r.dx?"critérios atendidos":"critérios não atendidos"}</b>.</div>
+  <div class="wrap"><table><tr><th>Critério DSM-5</th><th>Soma</th><th>Itens ≥ 2</th><th>Atende</th></tr>
+  <tr><td>B. Intrusão (1–5)</td><td>${r.sB}/20</td><td>${r.cB} (mín. 1)</td><td>${yn(r.okB)}</td></tr><tr><td>C. Evitação (6–7)</td><td>${r.sC}/8</td><td>${r.cC} (mín. 1)</td><td>${yn(r.okC)}</td></tr>
+  <tr><td>D. Cognição e humor (8–14)</td><td>${r.sD}/28</td><td>${r.cD} (mín. 2)</td><td>${yn(r.okD)}</td></tr><tr><td>E. Excitação e reatividade (15–20)</td><td>${r.sE}/24</td><td>${r.cE} (mín. 2)</td><td>${yn(r.okE)}</td></tr></table></div>
+  ${r.i16>=2?`<div class="verdict alert"><strong>Item 16 pontuado (${r.i16})</strong>Comportamento de risco ou autolesivo endossado. Retome a avaliação de risco e o plano de segurança.</div>`:""}
+  <p class="muted">Texto: adaptação de Lima et al. (2016). Ponto de corte 36: Pereira-Lima et al. (2019), contra SCID-5-CV, estudado na versão de Osório et al. (2017). O National Center for PTSD sugere 31–33. Sintoma presente com pontuação ≥ 2.</p>
+  <p class="noprint"><label class="f" for="cut">Ponto de corte</label><input type="text" id="cut" inputmode="numeric" value="${S.pclCut}" style="max-width:6rem"></p>
+  ${itemTable("Item a item",SECTIONS.pcl.items,PCL_SCALE)}</div>`}
+ h+=`<p class="muted">Itens destacados: pontuação ≥ 2. Instrumentos de rastreio sem parecer SATEPSI; uso complementar, integrado à entrevista clínica.</p>
+ <div class="row noprint"><button class="ghost" id="nw">Nova aplicação</button><button id="pdf">Gerar PDF</button></div>`;
+ app.innerHTML=h;
+ const cut=document.getElementById("cut");if(cut)cut.onchange=()=>{const v=parseInt(cut.value,10);if(!isNaN(v)){S.pclCut=v;rResults()}};
+ pdf.onclick=()=>{const t=document.title;document.title=`Trauma_${S.meta.cod||"paciente"}_${S.meta.date}`;print();document.title=t};
+ nw.onclick=()=>{if(confirm("Apagar estas respostas da tela e começar de novo?")){Object.assign(S,{ans:{},lec:{},idx_ev:{item:"",desc:"",tempo:"",critA:""},sent:"",step:"start"});render();top0()}};
+}
+render();
+</script>
+</body>
+</html>
